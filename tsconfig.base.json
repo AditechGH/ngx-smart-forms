@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ngx-smart-forms/shared-utils": ["shared/src/index.ts"],
       "@ngx-smart-forms/smart-error-display": [
         "smart-error-display/src/index.ts"
       ]
