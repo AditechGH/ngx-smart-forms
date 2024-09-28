@@ -2,7 +2,7 @@
   "name": "smart-error-display",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "smart-error-display/src",
-  "prefix": "lib",
+  "prefix": "smart",
   "projectType": "library",
   "tags": [],
   "targets": {
