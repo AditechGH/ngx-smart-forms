@@ -7,13 +7,11 @@ import {
   ElementRef,
   HostListener,
   Input,
-  OnChanges,
   OnDestroy,
   OnInit,
   Optional,
   Renderer2,
   Self,
-  SimpleChanges,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -34,7 +32,7 @@ import { getMergedStyles } from '@ngx-smart-forms/shared-utils';
  * performance optimizations, and analytics integration, making it suitable for production use in any Angular application.
  */
 @Component({
-  selector: 'lib-smart-error-display',
+  selector: 'smart-error-display',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   template: `
@@ -53,7 +51,7 @@ import { getMergedStyles } from '@ngx-smart-forms/shared-utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SmartErrorDisplayComponent
-  implements OnInit, AfterViewInit, OnChanges, OnDestroy
+  implements OnInit, AfterViewInit, OnDestroy
 {
   /**
    * The form control or form group whose errors will be displayed.
@@ -177,13 +175,6 @@ export class SmartErrorDisplayComponent
     private renderer: Renderer2
   ) {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['inputRef'] && this.inputRef) {
-      // Attach input listeners when inputRef is set
-      this.attachInputListeners();
-    }
-  }
-
   /**
    * Initializes the component and sets up subscriptions to form control value changes.
    * Automatically detects whether the control is provided via reactive forms or template-driven forms.
@@ -212,10 +203,12 @@ export class SmartErrorDisplayComponent
   }
 
   /**
-   * Lifecycle hook that is called after Angular has fully initialized the component's view.
-   * It is used to attach input listeners.
+   * Lifecycle hook that is called after a component's view has been fully initialized.
+   * This method attaches input listeners and merges styles based on the provided theme,
+   * theme class, and theme styles.
    */
   ngAfterViewInit() {
+    this.attachInputListeners();
     this.mergedStyles = getMergedStyles(
       this.theme,
       this.themeClass,
@@ -277,7 +270,17 @@ export class SmartErrorDisplayComponent
    * Attaches input listeners directly to the provided input reference.
    */
   private attachInputListeners() {
-    const inputElement = this.inputRef.nativeElement;
+    if (this.displayOn === 'change') {
+      return;
+    }
+
+    if (!this.inputRef) {
+      console.warn(
+        `No input reference provided for display type ${this.displayOn}. Error display may not work as expected.`
+      );
+      return;
+    }
+    const inputElement = this.inputRef?.nativeElement;
 
     // Ensure listeners are correctly attached
     this.renderer.listen(inputElement, 'focus', this.handleFocus.bind(this));
