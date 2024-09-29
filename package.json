@@ -1,9 +1,21 @@
 {
   "name": "@ngx-smart-forms/source",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
+  "description": "A monorepo for ngx-smart-forms libraries",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AditechGH/ngx-smart-forms.git"
+  },
+  "author": "Adinan Alhassan <aditech5170@gmail.com>",
   "scripts": {
-    "start": "npx nx serve ngx-smart-forms"
+    "start": "npx nx serve ngx-smart-forms",
+    "build": "npx nx run-many --target=build --all",
+    "build:smart-error-display": "npx nx build smart-error-display",
+    "test": "npx nx run-many --target=test --all --parallel",
+    "test:smart-error-display": "npx nx test smart-error-display",
+    "lint": "npx nx run-many --target=lint --all --parallel",
+    "lint:smart-error-display": "npx nx lint smart-error-display"
   },
   "private": true,
   "dependencies": {
