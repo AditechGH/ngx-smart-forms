@@ -94,7 +94,7 @@ yarn install
 The repository includes a demo app to showcase the libraries. You can run this app to test the libraries locally:
 
 ```bash
-npm start
+npm run start
 ```
 
 The app will be available at `http://localhost:4200/ngx-smart-forms`
@@ -104,13 +104,13 @@ The app will be available at `http://localhost:4200/ngx-smart-forms`
 To build all libraries in the monorepo, use:
 
 ```bash
-npm build
+npm run build
 ```
 
 To build a specific library, such as `smart-error-display`:
 
 ```bash
-npm build:smart-error-display
+npm run build:smart-error-display
 ```
 
 ### Running Tests
@@ -118,13 +118,13 @@ npm build:smart-error-display
 To ensure the quality of your contributions, all code should be thoroughly tested. Run tests across the entire workspace:
 
 ```bash
-npm test
+npm run test
 ```
 
 To run tests for a specific library:
 
 ```bash
-npm test:smart-error-display
+npm run test:smart-error-display
 ```
 
 ## Coding Standards
@@ -136,13 +136,13 @@ We follow specific coding standards to maintain consistency across the project. 
 Ensure your code passes lint checks before submitting a pull request. Linting helps catch stylistic and formatting errors:
 
 ```bash
-npm lint
+npm run lint
 ```
 
 You can also lint a specific library:
 
 ```bash
-npm lint:smart-error-display
+npm run lint:smart-error-display
 ```
 
 ### Commit Message Guidelines
