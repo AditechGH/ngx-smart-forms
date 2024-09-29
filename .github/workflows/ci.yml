@@ -1,10 +1,12 @@
-name: CI
+name: CI Pipeline
 
 on:
   push:
     branches:
       - main
   pull_request:
+    branches:
+      - main
 
 permissions:
   actions: read
@@ -14,25 +16,61 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
+      # Checkout code
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # This enables task distribution via Nx Cloud
-      # Run this command as early as possible, before dependencies are installed
-      # Learn more at https://nx.dev/ci/reference/nx-cloud-cli#npx-nxcloud-startcirun
-      - run: npx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="e2e-ci"
-
-      # Cache node_modules
+      # Cache node_modules to speed up subsequent builds
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
 
+      # Install dependencies
       - run: npm ci --legacy-peer-deps
-      - uses: nrwl/nx-set-shas@v4
 
-      # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
-      # - run: npx nx-cloud record -- echo Hello World
-      # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
-      - run: npx nx affected -t lint test build e2e-ci
+      # Enforce Conventional Commits
+      - name: Check Conventional Commits
+        uses: amannn/action-semantic-pull-request@v3
+        with:
+          types: |
+            fix
+            feat
+            chore
+            docs
+            refactor
+            style
+            test
+            build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Lint the code
+      - name: Run Linter
+        run: npx nx affected --target=lint --base=origin/main --head=HEAD
+
+      # Run unit tests and generate coverage report
+      - name: Run Unit Tests
+        run: npx nx affected --target=test --base=origin/main --head=HEAD --code-coverage
+        env:
+          CI: true
+
+      # Enforce a minimum coverage threshold
+      - name: Enforce Code Coverage Threshold
+        run: npx nyc check-coverage --statements 90 --branches 90 --functions 90 --lines 90
+        env:
+          CI: true
+
+      # Run build to ensure the project builds correctly
+      - name: Build the Project
+        run: npx nx affected --target=build --base=origin/main --head=HEAD
+
+      # Run e2e tests
+      - name: Run E2E Tests
+        run: npx nx affected --target=e2e --base=origin/main --head=HEAD
+
+      # Nx Cloud task distribution
+      - name: Nx Cloud Task Distribution
+        run: npx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="e2e-ci"
+        if: success()
