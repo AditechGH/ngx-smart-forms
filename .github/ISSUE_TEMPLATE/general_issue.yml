@@ -1,0 +1,22 @@
+name: "General issue"
+description: "Open a general issue for questions or other concerns"
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please provide a clear and concise description of your question or concern.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "Explain your question or concern in detail"
+      placeholder: "Enter a detailed description of your issue"
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Additional context"
+      description: "Add any other relevant information or context about the issue here."
+      placeholder: "Provide additional details or context"
