@@ -1,0 +1,30 @@
+# .github/ISSUE_TEMPLATE/feature_request.yml
+name: "Feature request"
+description: "Propose a new feature or enhancement"
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please provide a description of the feature request.
+
+  - type: input
+    id: feature_name
+    attributes:
+      label: "Feature Name"
+      description: "What would you like to name this feature?"
+      placeholder: "Enter the name of the feature"
+
+  - type: textarea
+    id: feature_description
+    attributes:
+      label: "Feature Description"
+      description: "Explain what this feature will do and why it is needed"
+      placeholder: "Describe the feature"
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Additional context"
+      description: "Add any other context or screenshots related to the feature request"
+      placeholder: "Provide additional details"

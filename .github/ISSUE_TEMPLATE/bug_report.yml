@@ -1,0 +1,76 @@
+name: "Bug report"
+description: "Report a bug or an issue"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+
+  - type: input
+    id: title
+    attributes:
+      label: "Title"
+      description: "A brief description of the issue"
+      placeholder: "Enter a concise bug title"
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Steps to reproduce"
+      description: "Explain the steps to reproduce the issue"
+      placeholder: "1. Go to '...'\n2. Click on '...'\n3. Scroll down to '...'"
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected behavior"
+      description: "Describe what you expected to happen"
+      placeholder: "What should happen?"
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: "Actual behavior"
+      description: "Describe what actually happens"
+      placeholder: "What is happening?"
+
+  - type: input
+    id: version
+    attributes:
+      label: "Version"
+      description: "Provide the version of the project in which the issue occurred"
+      placeholder: "Enter the version"
+
+  - type: input
+    id: os
+    attributes:
+      label: "Operating System"
+      description: "Specify the operating system you're using"
+      placeholder: "e.g., Windows, macOS, Linux"
+
+  - type: input
+    id: browser
+    attributes:
+      label: "Browser"
+      description: "Specify the browser you're using"
+      placeholder: "e.g., Chrome, Firefox, Safari"
+
+  - type: input
+    id: browser_version
+    attributes:
+      label: "Browser Version"
+      description: "Provide the version of your browser"
+      placeholder: "e.g., 95.0.4638.69"
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: "Screenshots/Screen Recordings"
+      description: "If applicable, provide links to screenshots or screen recordings that demonstrate the issue"
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Additional context"
+      description: "Add any other relevant information or context about the problem here."
