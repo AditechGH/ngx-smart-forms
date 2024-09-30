@@ -1,0 +1,290 @@
+<h2>Smart Error Display Demo</h2>
+
+<h3>Basic Usage (Reactive Forms)</h3>
+<form [formGroup]="basicForm">
+  <div>
+    <label for="username">Username:</label>
+    <input
+      type="text"
+      id="username"
+      formControlName="username"
+      required
+      minlength="3"
+    />
+    <smart-error-display
+      id="usernameError"
+      [control]="basicForm.get('username')"
+    ></smart-error-display>
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email" required email />
+    <smart-error-display
+      id="emailError"
+      [control]="basicForm.get('email')"
+    ></smart-error-display>
+  </div>
+
+  <button type="submit" [disabled]="basicForm.invalid">Submit</button>
+</form>
+
+<h3>Template-Driven Forms</h3>
+<form #templateForm="ngForm">
+  <div>
+    <label for="tdUsername">Username:</label>
+    <input
+      type="text"
+      id="tdUsername"
+      name="tdUsername"
+      [(ngModel)]="tdUsername"
+      required
+      minlength="3"
+      #tdUsernameControl="ngModel"
+    />
+    <smart-error-display
+      id="tdUsernameError"
+      [control]="tdUsernameControl.control"
+      [customMessages]="{ required: 'Username is required (template-driven).' }"
+    ></smart-error-display>
+  </div>
+
+  <div>
+    <label for="tdEmail">Email:</label>
+    <input
+      type="email"
+      id="tdEmail"
+      name="tdEmail"
+      [(ngModel)]="tdEmail"
+      required
+      email
+      #tdEmailControl="ngModel"
+    />
+    <smart-error-display
+      id="tdEmailError"
+      [control]="tdEmailControl.control"
+      [customMessages]="{ email: 'Invalid email format (template-driven).' }"
+    ></smart-error-display>
+  </div>
+
+  <button type="submit" [disabled]="templateForm.invalid">Submit</button>
+</form>
+
+<h3>Custom Error Messages</h3>
+<form [formGroup]="customMessageForm">
+  <div>
+    <label for="customUsername">Username:</label>
+    <input
+      type="text"
+      id="customUsername"
+      formControlName="customUsername"
+      required
+      minlength="3"
+    />
+    <smart-error-display
+      id="customUsernameError"
+      [control]="customMessageForm.get('customUsername')"
+      [customMessages]="{
+        required: 'Please enter your username.',
+        minlength: 'Username must be at least 3 characters long.'
+      }"
+    >
+    </smart-error-display>
+  </div>
+
+  <button type="submit" [disabled]="customMessageForm.invalid">Submit</button>
+</form>
+
+<h3>Theming</h3>
+<form [formGroup]="themingForm">
+  <div>
+    <label for="themeUsername">Username (Dark Theme):</label>
+    <input
+      type="text"
+      id="themeUsername"
+      formControlName="themeUsername"
+      required
+    />
+    <smart-error-display
+      id="themeUsernameError"
+      [control]="themingForm.get('themeUsername')"
+      theme="dark"
+    ></smart-error-display>
+  </div>
+
+  <div>
+    <label for="themeEmail">Email (Custom Styles):</label>
+    <input
+      type="email"
+      id="themeEmail"
+      formControlName="themeEmail"
+      required
+      email
+    />
+    <smart-error-display
+      id="themeEmailError"
+      [control]="themingForm.get('themeEmail')"
+      [themeStyles]="{ color: 'blue', fontSize: '14px' }"
+    >
+    </smart-error-display>
+  </div>
+
+  <div>
+    <label for="themePassword">Username (Custom Class):</label>
+    <input
+      type="password"
+      id="themePassword"
+      formControlName="themePassword"
+      required
+    />
+    <smart-error-display
+      id="themePasswordError"
+      [control]="themingForm.get('themePassword')"
+      themeClass="text-color font-size"
+    ></smart-error-display>
+  </div>
+
+  <button type="submit" [disabled]="themingForm.invalid">Submit</button>
+</form>
+
+<h3>Custom Error Formatter</h3>
+<form [formGroup]="customFormatterForm">
+  <div>
+    <label for="customFormatterUsername">Username (min 5 chars):</label>
+    <input
+      type="text"
+      id="customFormatterUsername"
+      formControlName="customFormatterUsername"
+      required
+      minlength="5"
+    />
+    <smart-error-display
+      id="customFormatterUsernameError"
+      [control]="customFormatterForm.get('customFormatterUsername')"
+      [errorFormatter]="customFormatter"
+    >
+    </smart-error-display>
+  </div>
+
+  <button type="submit" [disabled]="customFormatterForm.invalid">Submit</button>
+</form>
+
+<h3>Error Display Control</h3>
+<form [formGroup]="errorDisplayControlForm">
+  <div>
+    <label for="edcUsername">Username (on blur):</label>
+    <input
+      #usernameRef
+      type="text"
+      id="edcUsername"
+      formControlName="edcUsername"
+      required
+    />
+    <smart-error-display
+      id="edcUsernameError"
+      [control]="errorDisplayControlForm.get('edcUsername')"
+      displayOn="blur"
+      [inputRef]="usernameElement"
+    ></smart-error-display>
+  </div>
+
+  <div>
+    <label for="edcEmail">Email (on hover):</label>
+    <input
+      #emailRef
+      type="email"
+      id="edcEmail"
+      formControlName="edcEmail"
+      required
+      email
+    />
+    <smart-error-display
+      id="edcEmailError"
+      [control]="errorDisplayControlForm.get('edcEmail')"
+      displayOn="hover"
+      [inputRef]="emailElement"
+    ></smart-error-display>
+  </div>
+
+  <div>
+    <label for="edcPassword">Password (on focus):</label>
+    <input
+      #passwordRef
+      type="password"
+      id="edcPassword"
+      formControlName="edcPassword"
+      required
+    />
+    <smart-error-display
+      id="edcPasswordError"
+      [control]="errorDisplayControlForm.get('edcPassword')"
+      displayOn="focus"
+      [inputRef]="passwordElement"
+    ></smart-error-display>
+  </div>
+
+  <button type="submit" [disabled]="errorDisplayControlForm.invalid">
+    Submit
+  </button>
+</form>
+
+<h3>Debounce Time</h3>
+<form [formGroup]="debounceForm">
+  <div>
+    <label for="debounceUsername">Username (debounce 500ms):</label>
+    <input
+      type="text"
+      id="debounceUsername"
+      formControlName="debounceUsername"
+      required
+    />
+    <smart-error-display
+      id="debounceUsernameError"
+      [control]="debounceForm.get('debounceUsername')"
+      [debounceTime]="500"
+    ></smart-error-display>
+  </div>
+
+  <button type="submit" [disabled]="debounceForm.invalid">Submit</button>
+</form>
+
+<h3>Localization (i18n) - (Mock)</h3>
+<form [formGroup]="localizationForm">
+  <div>
+    <label for="localizationEmail">Email:</label>
+    <input
+      type="email"
+      id="localizationEmail"
+      formControlName="localizationEmail"
+      required
+      email
+    />
+    <smart-error-display
+      id="localizationEmailError"
+      [control]="localizationForm.get('localizationEmail')"
+      [translationService]="translationService"
+    ></smart-error-display>
+  </div>
+
+  <button type="submit" [disabled]="localizationForm.invalid">Submit</button>
+</form>
+
+<h3>Custom Logging (Mock)</h3>
+<form [formGroup]="customLoggingForm">
+  <div>
+    <label for="customLoggingUsername">Username:</label>
+    <input
+      type="text"
+      id="customLoggingUsername"
+      formControlName="customLoggingUsername"
+      required
+    />
+    <smart-error-display
+      id="customLoggingUsernameError"
+      [control]="customLoggingForm.get('customLoggingUsername')"
+      [logError]="customLogError"
+    ></smart-error-display>
+  </div>
+
+  <button type="submit" [disabled]="customLoggingForm.invalid">Submit</button>
+</form>
