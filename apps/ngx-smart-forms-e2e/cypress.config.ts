@@ -11,8 +11,8 @@ export default defineConfig({
         production: 'npx nx run ngx-smart-forms:serve-static',
       },
       ciWebServerCommand: 'npx nx run ngx-smart-forms:serve-static',
-      ciBaseUrl: 'http://localhost:4200',
+      ciBaseUrl: 'http://localhost:4200/ngx-smart-forms',
     }),
-    baseUrl: 'http://localhost:4200',
+    baseUrl: 'http://localhost:4200/ngx-smart-forms',
   },
 });
