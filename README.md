@@ -105,7 +105,6 @@ This monorepo follows the Nx workspace structure for managing multiple libraries
 
 - **apps/**: Contains the demo applications that showcase the usage of the libraries.
 - **libs/**: Contains the individual libraries (e.g., smart-error-display).
-- **shared/**: Custom scripts and utilities.
 - **node_modules/**: Standard Node.js dependencies.
 - **package.json**: Central package manager configuration for the monorepo.
 - **nx.json**: Nx configuration for the workspace.
