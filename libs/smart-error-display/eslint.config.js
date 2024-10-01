@@ -9,6 +9,9 @@ module.exports = [
       '@nx/dependency-checks': [
         'error',
         { ignoredFiles: ['{projectRoot}/eslint.config.{js,cjs,mjs}'] },
+        {
+          allowedDependencies: ['@ngx-smart-forms/shared'],
+        },
       ],
     },
     languageOptions: { parser: require('jsonc-eslint-parser') },
