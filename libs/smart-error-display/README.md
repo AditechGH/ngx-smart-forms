@@ -5,6 +5,7 @@ The `@ngx-smart-forms/smart-error-display` is an advanced Angular component that
 ## Table of Contents
 
 - [Key Features](#key-features)
+- [Live Demo](#live-demo)
 - [Installation](#installation)
 - [Getting Started](#getting-started)
   - [Basic Usage with Reactive Forms](#basic-usage-with-reactive-forms)
@@ -35,6 +36,14 @@ The `@ngx-smart-forms/smart-error-display` is an advanced Angular component that
 - **Predefined Themes and Styling**: Offers customizable styles and predefined themes (light, dark, compact).
 - **Performance Optimization**: Utilizes `OnPush` change detection strategy for optimal performance in large forms.
 - **Error Handling**: Includes fallback mechanisms to handle and display errors gracefully, highlighting affected input fields when needed.
+
+## Live Demo
+
+Check out a live interactive demo of the `@ngx-smart-forms/smart-error-display` component on StackBlitz:
+
+[![Edit @ngx-smart-forms/smart-error-display Example](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/stackblitz-starters-xlgvbh)
+
+You can also click [here](https://stackblitz.com/edit/stackblitz-starters-xlgvbh) to open the project in a new tab.
 
 ## Installation
 
