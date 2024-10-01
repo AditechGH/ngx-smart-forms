@@ -304,8 +304,8 @@ If you encounter an issue, you can [create a ticket](https://github.com/AditechG
 
 ## Contributing
 
-We welcome contributions! Please see the [CONTRIBUTING.md](../CONTRIBUTING.md) file for more information on how to get involved.
+We welcome contributions! Please see the [CONTRIBUTING.md](../../CONTRIBUTING.md) file for more information on how to get involved.
 
 ## License
 
-This library is licensed under the MIT License - see the [LICENSE](../LICENSE) file for details.
+This library is licensed under the MIT License - see the [LICENSE](../../LICENSE) file for details.
