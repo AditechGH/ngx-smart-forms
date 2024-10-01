@@ -1,82 +1,166 @@
-# NgxSmartForms
+# ngx-smart-forms Monorepo
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+ngx-smart-forms is a collection of Angular libraries designed to enhance form handling and validation in Angular applications. Each library in this monorepo offers specific functionality aimed at simplifying form creation, validation, and error display, while providing advanced customization and performance optimizations.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+## Table of Contents
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+- [About the Project](#about-the-project)
+- [Libraries](#libraries)
+  - [@ngx-smart-forms/smart-error-display](#ngx-smart-formssmart-error-display)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Usage](#usage)
+- [Development](#development)
+  - [Monorepo Structure](#monorepo-structure)
+  - [Building the Libraries](#building-the-libraries)
+  - [Running Tests](#running-tests)
+  - [Running the Demo App](#running-the-demo-app)
+- [Contributing](#contributing)
+- [Support](#support)
+- [License](#license)
 
-## Finish your CI setup
+## About the Project
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/jJvLO5ygXw)
+The ngx-smart-forms monorepo is a unified workspace containing multiple Angular libraries that provide tools for creating efficient, user-friendly forms. These libraries cover everything from error display components, customizable inputs, to dynamic form builders.
 
+The main goal of this project is to deliver reusable and easily customizable form components that work well in real-world production environments.
 
-## Run tasks
+## Libraries
 
-To run the dev server for your app, use:
+### @ngx-smart-forms/smart-error-display
 
-```sh
-npx nx serve ngx-smart-forms
+The `@ngx-smart-forms/smart-error-display` is a robust Angular component for displaying form validation errors. It supports both reactive and template-driven forms, offering localization, theming, and custom error handling.
+
+- Key Features:
+  - Works with reactive and template-driven forms.
+  - Customizable error messages and themes.
+  - Supports translation services for i18n.
+  - Integrates with analytics for error logging.
+
+For more details, see the full [README](./libs/smart-error-display/README.md).
+
+## Getting Started
+
+This section explains how to get started with the ngx-smart-forms libraries in your Angular projects.
+
+### Installation
+
+You can install any of the libraries from the ngx-smart-forms monorepo using npm or yarn.
+
+For example, to install the smart-error-display library:
+
+```bash
+npm install @ngx-smart-forms/smart-error-display
 ```
 
-To create a production bundle:
+Or using Yarn:
 
-```sh
-npx nx build ngx-smart-forms
+```bash
+yarn add @ngx-smart-forms/smart-error-display
 ```
 
-To see all available targets to run for a project, run:
+### Usage
 
-```sh
-npx nx show project ngx-smart-forms
+After installing the libraries, you can import and use them in your Angular components. Below is an example of how to use the `smart-error-display` component in a form.
+
+```typescript
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SmartErrorDisplayComponent } from '@ngx-smart-forms/smart-error-display';
+
+@Component({
+  standalone: true,
+  imports: [SmartErrorDisplayComponent],
+  templateUrl: './my-form.component.html',
+})
+export class MyFormComponent {
+  form: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+    });
+  }
+}
+````
+
+```html
+<form [formGroup]="form">
+  <input formControlName="username" placeholder="Username" />
+  <smart-error-display [control]="form.get('username')"></smart-error-display>
+
+  <input formControlName="email" placeholder="Email" />
+  <smart-error-display [control]="form.get('email')"></smart-error-display>
+</form>
 ```
-        
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+For detailed usage instructions for each library, see their individual `README.md` files inside the respective `libs/` directories.
 
-## Add new projects
+## Development
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+### Monorepo Structure
 
-Use the plugin's generator to create new projects.
+This monorepo follows the Nx workspace structure for managing multiple libraries. The main components of the monorepo are:
 
-To generate a new application, use:
+- **apps/**: Contains the demo applications that showcase the usage of the libraries.
+- **libs/**: Contains the individual libraries (e.g., smart-error-display).
+- **shared/**: Custom scripts and utilities.
+- **node_modules/**: Standard Node.js dependencies.
+- **package.json**: Central package manager configuration for the monorepo.
+- **nx.json**: Nx configuration for the workspace.
 
-```sh
-npx nx g @nx/angular:app demo
+### Building the Libraries
+
+To build all the libraries in the monorepo, run the following command:
+
+```bash
+npm run build
 ```
 
-To generate a new library, use:
+To build a specific library (e.g., smart-error-display):
 
-```sh
-npx nx g @nx/angular:lib mylib
+```bash
+npm run build:smart-error-display
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+### Running Tests
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+To run the unit tests for all libraries:
 
+```bash
+npm run test
+```
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+To run tests for a specific library (e.g., smart-error-display):
 
-## Install Nx Console
+```bash
+npm run smart-error-display
+```
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+### Running the Demo App
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+There is a demo application located in the `apps/ngx-smart-forms/` directory that showcases how to use the libraries. You can run this app to see the libraries in action:
 
-## Useful links
+```bash
+npm run start
+```
 
-Learn more:
+## Contributing
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+We welcome contributions from the community! If you're interested in contributing to the project, please check out the [CONTRIBUTING.md](./CONTRIBUTING.md) file in the root of the repository.
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### How to Contribute:
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Make your changes and commit with meaningful messages.
+4. Open a pull request with a description of your changes.
+
+## Support
+
+If you encounter any issues or have questions, feel free to [create an issue](https://github.com/AditechGH/ngx-smart-forms/issues) on GitHub.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
