@@ -22,7 +22,7 @@ import {
 
 import { debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 
-import { getMergedStyles } from '@ngx-smart-forms/shared';
+import { getMergedStyles } from '../utils';
 
 /**
  * SmartErrorDisplayComponent

@@ -1,6 +1,6 @@
 {
   "name": "@ngx-smart-forms/smart-error-display",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A robust Angular component that displays validation errors for form controls with advanced theming, localization, and analytics integration.",
   "author": "Adinan Alhassan <aditech5170@gmail.com>",
   "license": "MIT",

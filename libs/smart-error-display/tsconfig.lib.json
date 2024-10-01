@@ -13,8 +13,5 @@
     "jest.config.ts",
     "src/**/*.test.ts"
   ],
-  "include": ["src/**/*.ts"],
-  "paths": {
-    "@ngx-smart-forms/shared": ["../../libs/shared/src/index.ts"]
-  }
+  "include": ["src/**/*.ts"]
 }
