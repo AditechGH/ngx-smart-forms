@@ -1,23 +1,23 @@
 {
   "name": "smart-error-display",
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "smart-error-display/src",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/smart-error-display/src",
   "prefix": "smart",
   "projectType": "library",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "outputs": ["{workspaceRoot}/dist/libs/{projectRoot}"],
       "options": {
-        "project": "smart-error-display/ng-package.json"
+        "project": "libs/smart-error-display/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "smart-error-display/tsconfig.lib.prod.json"
+          "tsConfig": "libs/smart-error-display/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "smart-error-display/tsconfig.lib.json"
+          "tsConfig": "libs/smart-error-display/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"
@@ -26,7 +26,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "smart-error-display/jest.config.ts"
+        "jestConfig": "libs/smart-error-display/jest.config.ts"
       }
     },
     "lint": {
