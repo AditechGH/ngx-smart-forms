@@ -19,6 +19,10 @@
     "paths": {
       "@ngx-smart-forms/smart-error-display": [
         "libs/smart-error-display/src/index.ts"
+      ],
+      "@ngx-smart-forms/smart-input": ["libs/smart-input/src/index.ts"],
+      "@ngx-smart-forms/smart-input-type": [
+        "libs/smart-input-type/src/index.ts"
       ]
     }
   },
