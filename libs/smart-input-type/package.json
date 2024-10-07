@@ -2,8 +2,9 @@
   "name": "@ngx-smart-forms/smart-input-type",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "^18.2.0",
-    "@angular/core": "^18.2.0"
+    "@angular/core": ">=17.0.0",
+    "@angular/forms": ">=17.0.0",
+    "rxjs": "^7.0.0"
   },
   "sideEffects": false
 }
