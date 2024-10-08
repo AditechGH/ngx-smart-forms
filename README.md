@@ -6,6 +6,7 @@ ngx-smart-forms is a collection of Angular libraries designed to enhance form ha
 
 - [About the Project](#about-the-project)
 - [Libraries](#libraries)
+  - [@ngx-smart-forms/smart-input-type](#ngx-smart-formssmart-error-display)
   - [@ngx-smart-forms/smart-error-display](#ngx-smart-formssmart-error-display)
 - [Getting Started](#getting-started)
   - [Installation](#installation)
@@ -26,6 +27,18 @@ The ngx-smart-forms monorepo is a unified workspace containing multiple Angular 
 The main goal of this project is to deliver reusable and easily customizable form components that work well in real-world production environments.
 
 ## Libraries
+
+### @ngx-smart-forms/smart-input-type
+
+The `@ngx-smart-forms/smart-input-type` is a powerful Angular directive that enhances native HTML input elements with advanced validation and formatting capabilities.
+
+- Key Features:
+  - Enforces various input types and custom regex patterns.
+  - Integrates with native HTML input types and reactive forms.
+  - Supports case transformation and language-specific character sets.
+  - Provides clear error visibility through automatic CSS class application.
+
+For more details, see the full [README](./libs/smart-input-type/README.md).
 
 ### @ngx-smart-forms/smart-error-display
 
