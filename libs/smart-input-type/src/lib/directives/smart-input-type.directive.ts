@@ -66,9 +66,9 @@ export class SmartInputType implements OnInit, OnChanges {
 
   // Language map for filtering
   private languageMap: { [key: string]: string } = {
-    en: 'a-zA-Z',
-    es: 'a-zA-Záéíóúñ',
-    fr: 'a-zA-Zàâäçéèêëîïôùûüÿ',
+    en: 'a-zA-Z0-9',
+    es: 'a-zA-Z0-9áéíóúñ',
+    fr: 'a-zA-Z0-9àâäçéèêëîïôùûüÿ',
   };
 
   constructor(
@@ -161,8 +161,14 @@ export class SmartInputType implements OnInit, OnChanges {
     // Process multiple smartTypes if present
     value = this.applySmartTypeValidation(this.smartType, value, errors);
 
-    this.applyFormErrors(errors);
+    // Update the native input element's value
     this.el.nativeElement.value = value;
+
+    // Sync with FormControl if exists
+    if (this.formControl) {
+      this.formControl.setValue(value, { emitEvent: false });
+      this.applyFormErrors(errors);
+    }
 
     // Apply user-friendly visual feedback
     this.applyVisualFeedback(errors);
@@ -199,7 +205,7 @@ export class SmartInputType implements OnInit, OnChanges {
         break;
       case 'email': {
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailPattern.test(value)) {
+        if (!emailPattern.test(value) && value !== '') {
           errors['strictEmail'] = true;
         }
         break;
@@ -207,14 +213,14 @@ export class SmartInputType implements OnInit, OnChanges {
       case 'url': {
         const urlPattern =
           /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
-        if (!urlPattern.test(value)) {
+        if (!urlPattern.test(value) && value !== '') {
           errors['strictUrl'] = true;
         }
         break;
       }
       case 'tel': {
         const telPattern = /^\+?(\d.*){3,}$/;
-        if (!telPattern.test(value)) {
+        if (!telPattern.test(value) && value !== '') {
           errors['strictTel'] = true;
         }
         break;
@@ -311,20 +317,16 @@ export class SmartInputType implements OnInit, OnChanges {
    */
   private isCompatibleWithNativeInput(): boolean {
     const nativeType = this.el.nativeElement.type;
-    switch (this.smartType) {
-      case 'alphanumeric':
-      case 'alpha':
-        return nativeType === 'text';
-      case 'numeric':
-        return nativeType === 'number' || nativeType === 'text';
-      case 'email':
-        return nativeType === 'email' || nativeType === 'text';
-      case 'url':
-        return nativeType === 'url';
-      case 'tel':
-        return nativeType === 'tel';
-      default:
-        return true;
-    }
+
+    const smartTypeCompatibility: { [key: string]: string[] } = {
+      alphanumeric: ['text'],
+      alpha: ['text'],
+      numeric: ['number', 'text'],
+      email: ['email', 'text'],
+      url: ['url', 'text'],
+      tel: ['tel', 'text'],
+    };
+
+    return smartTypeCompatibility[this.smartType]?.includes(nativeType) ?? true;
   }
 }
