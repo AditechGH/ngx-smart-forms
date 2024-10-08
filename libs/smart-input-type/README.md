@@ -40,9 +40,9 @@ The `SmartInputType` directive enhances the native HTML input element by providi
 
 Check out a live interactive demo of the `@ngx-smart-forms/smart-input-type` library on StackBlitz:
 
-[![Edit @ngx-smart-forms/smart-input Example](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/stackblitz-starters-xlgvbh)
+[![Edit @ngx-smart-forms/smart-input-type Example](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/stackblitz-starters-qpu8qf)
 
-You can also click [here](https://stackblitz.com/edit/stackblitz-starters-xlgvbh) to open the project in a new tab.
+You can also click [here](https://stackblitz.com/edit/stackblitz-starters-qpu8qf) to open the project in a new tab.
 
 ## Installation
 
