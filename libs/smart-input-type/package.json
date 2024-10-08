@@ -1,6 +1,21 @@
 {
   "name": "@ngx-smart-forms/smart-input-type",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "a robust Angular directive that enhances native HTML input elements with advanced validation and formatting capabilities.",
+  "author": "Adinan Alhassan <aditech5170@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AditechGH/ngx-smart-forms.git"
+  },
+  "keywords": [
+    "angular",
+    "library",
+    "input type",
+    "forms",
+    "validation",
+    "formatting"
+  ],
   "peerDependencies": {
     "@angular/core": ">=17.0.0",
     "@angular/forms": ">=17.0.0",
