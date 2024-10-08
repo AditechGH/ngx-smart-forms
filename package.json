@@ -11,11 +11,14 @@
   "scripts": {
     "start": "npx nx serve ngx-smart-forms",
     "build": "npx nx run-many --target=build --all",
-    "build:smart-error-display": "npx nx build smart-error-display",
-    "test": "npx nx run-many --target=test --all --parallel",
-    "test:smart-error-display": "npx nx test smart-error-display",
     "lint": "npx nx run-many --target=lint --all --parallel",
-    "lint:smart-error-display": "npx nx lint smart-error-display"
+    "test": "npx nx run-many --target=test --all --parallel",
+    "build:smart-error-display": "npx nx build smart-error-display",
+    "test:smart-error-display": "npx nx test smart-error-display",
+    "lint:smart-error-display": "npx nx lint smart-error-display",
+    "build:smart-input-type": "npx nx build smart-input-type",
+    "test:smart-input-type": "npx nx test smart-input-type",
+    "lint:smart-input-type": "npx nx lint smart-input-type"
   },
   "private": true,
   "dependencies": {

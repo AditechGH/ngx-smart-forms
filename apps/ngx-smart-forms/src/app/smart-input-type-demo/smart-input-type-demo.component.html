@@ -1,0 +1,126 @@
+<div>
+  <h2>Smart Input Type Demo</h2>
+
+  <h3>Enhanced Input Validation and Formatting</h3>
+  <div class="input-group">
+    <label for="alphanumeric-no-spaces"
+      >1. Alphanumeric Input (No Spaces)</label
+    >
+    <input id="alphanumeric-no-spaces" smartType="alphanumeric" />
+  </div>
+
+  <div class="input-group">
+    <label for="alphanumeric-with-spaces"
+      >2. Alphanumeric Input (With Spaces)</label
+    >
+    <input
+      id="alphanumeric-with-spaces"
+      smartType="alphanumeric"
+      [acceptSpace]="true"
+    />
+  </div>
+
+  <div class="input-group">
+    <label for="numeric-no-spaces">3. Numeric Input (Without Spaces)</label>
+    <input id="numeric-no-spaces" smartType="numeric" />
+  </div>
+
+  <div class="input-group">
+    <label for="numeric-with-spaces">4. Numeric Input (With Spaces)</label>
+    <input id="numeric-with-spaces" smartType="numeric" [acceptSpace]="true" />
+  </div>
+
+  <div class="input-group">
+    <label for="alpha-no-spaces">5. Alpha Input (No Spaces)</label>
+    <input id="alpha-no-spaces" smartType="alpha" />
+  </div>
+
+  <div class="input-group">
+    <label for="alpha-with-spaces">6. Alpha Input (With Spaces)</label>
+    <input id="alpha-with-spaces" smartType="alpha" [acceptSpace]="true" />
+  </div>
+
+  <div class="input-group">
+    <label for="custom-pattern">7. Custom Pattern Validation ([0-9])</label>
+    <input id="custom-pattern" smartType="pattern" [pattern]="'0-9'" />
+  </div>
+
+  <div class="input-group">
+    <label for="language-specific-input"
+      >8. Language-Specific Input (Spanish)</label
+    >
+    <input id="language-specific-input" smartType="text" languageSet="es" />
+  </div>
+
+  <div class="input-group">
+    <label for="arabic-numerals"
+      >9. Language-Specific Input (Arabic Numerals)</label
+    >
+    <input id="arabic-numerals" smartType="text" [languageSet]="'٠١٢٣٤٥٦٧٨٩'" />
+  </div>
+
+  <div class="input-group">
+    <label for="case-sensitive-input">10. Uppercase Input (Alphanumeric)</label>
+    <input
+      id="case-sensitive-input"
+      smartType="alphanumeric"
+      case="uppercase"
+    />
+  </div>
+
+  <div class="input-group">
+    <label for="password">11. Password</label>
+    <input id="password" smartType="password" />
+  </div>
+
+  <div class="input-group">
+    <label for="debounce-input">12. Debounce Input Validation</label>
+    <input id="debounce-input" smartType="alphanumeric" [debounceTime]="500" />
+  </div>
+
+  <div class="input-group">
+    <label for="language-set-case-sensitivity"
+      >13. Language Set and lowercase Together</label
+    >
+    <input
+      id="language-set-case-sensitivity"
+      smartType="text"
+      languageSet="fr"
+      case="lowercase"
+    />
+  </div>
+
+  <div class="input-group">
+    <label for="visual-feedback-input">14. Visual Feedback for Errors</label>
+    <input id="visual-feedback-input" smartType="email" class="form-control" />
+  </div>
+</div>
+
+<!-- Form Section -->
+<form [formGroup]="myForm" class="container">
+  <h3>Enhanced Form Validation</h3>
+
+  <div class="input-group">
+    <label for="email">Email:</label>
+    <input id="email" smartType="email" formControlName="email" />
+    <div *ngIf="myForm.get('email')?.hasError('strictEmail')">
+      Invalid Email
+    </div>
+  </div>
+
+  <div class="input-group">
+    <label for="url">URL:</label>
+    <input id="url" smartType="url" formControlName="url" />
+    <div *ngIf="myForm.get('url')?.hasError('strictUrl')">
+      Invalid URL format
+    </div>
+  </div>
+
+  <div class="input-group">
+    <label for="tel">Telephone:</label>
+    <input id="tel" smartType="tel" formControlName="tel" />
+    <div *ngIf="myForm.get('tel')?.hasError('strictTel')">
+      Invalid phone number
+    </div>
+  </div>
+</form>
