@@ -137,7 +137,7 @@ This will restricts the input to arabic numerals.
 ### Custom Pattern Validation
 
 ```html
-<input smartType="pattern" [pattern]="[a-zA-Z0-9]" />
+ <input smartType="pattern" pattern="a-zA-Z0-9" />
 ```
 
 Applies a custom regex pattern for validation.
@@ -210,8 +210,8 @@ If you encounter an issue, you can [create a ticket](https://github.com/AditechG
 
 ## Contributing
 
-We welcome contributions! Please see the [CONTRIBUTING.md](../../CONTRIBUTING.md) file for more information on how to get involved.
+We welcome contributions! Please see the [CONTRIBUTING.md](https://github.com/AditechGH/ngx-smart-forms/blob/main/CONTRIBUTING.md) file for more information on how to get involved.
 
 ## License
 
-This library is licensed under the MIT License - see the [LICENSE](../../LICENSE) file for details.
+This library is licensed under the MIT License - see the [LICENSE](https://github.com/AditechGH/ngx-smart-forms/blob/main/LICENSE) file for details.
