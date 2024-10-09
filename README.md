@@ -1,6 +1,6 @@
-# ngx-smart-forms Monorepo
+# ngx-smart-forms Library Collection
 
-ngx-smart-forms is a collection of Angular libraries designed to enhance form handling and validation in Angular applications. Each library in this monorepo offers specific functionality aimed at simplifying form creation, validation, and error display, while providing advanced customization and performance optimizations.
+ngx-smart-forms is a collection of Angular libraries designed to enhance form handling and validation in Angular applications. Each library in this workspace offers specific functionality aimed at simplifying form creation, validation, and error display, while providing advanced customization and performance optimizations.
 
 ## Table of Contents
 
@@ -12,7 +12,7 @@ ngx-smart-forms is a collection of Angular libraries designed to enhance form ha
   - [Installation](#installation)
   - [Usage](#usage)
 - [Development](#development)
-  - [Monorepo Structure](#monorepo-structure)
+  - [Project Structure](#project-structure)
   - [Building the Libraries](#building-the-libraries)
   - [Running Tests](#running-tests)
   - [Running the Demo App](#running-the-demo-app)
@@ -22,7 +22,7 @@ ngx-smart-forms is a collection of Angular libraries designed to enhance form ha
 
 ## About the Project
 
-The ngx-smart-forms monorepo is a unified workspace containing multiple Angular libraries that provide tools for creating efficient, user-friendly forms. These libraries cover everything from error display components, customizable inputs, to dynamic form builders.
+The ngx-smart-forms project is a unified workspace containing multiple Angular libraries that provide tools for creating efficient, user-friendly forms. These libraries cover everything from error display components, customizable inputs, to dynamic form builders.
 
 The main goal of this project is to deliver reusable and easily customizable form components that work well in real-world production environments.
 
@@ -58,7 +58,7 @@ This section explains how to get started with the ngx-smart-forms libraries in y
 
 ### Installation
 
-You can install any of the libraries from the ngx-smart-forms monorepo using npm or yarn.
+You can install any of the libraries from the ngx-smart-forms workspace using npm or yarn.
 
 For example, to install the smart-error-display library:
 
@@ -112,19 +112,19 @@ For detailed usage instructions for each library, see their individual `README.m
 
 ## Development
 
-### Monorepo Structure
+### Project Structure
 
-This monorepo follows the Nx workspace structure for managing multiple libraries. The main components of the monorepo are:
+This project follows the Nx monorepo structure for managing multiple libraries. The main components of the workspace are:
 
 - **apps/**: Contains the demo applications that showcase the usage of the libraries.
 - **libs/**: Contains the individual libraries (e.g., smart-error-display).
 - **node_modules/**: Standard Node.js dependencies.
-- **package.json**: Central package manager configuration for the monorepo.
+- **package.json**: Central package manager configuration for the workspace.
 - **nx.json**: Nx configuration for the workspace.
 
 ### Building the Libraries
 
-To build all the libraries in the monorepo, run the following command:
+To build all the libraries in the workspace, run the following command:
 
 ```bash
 npm run build
