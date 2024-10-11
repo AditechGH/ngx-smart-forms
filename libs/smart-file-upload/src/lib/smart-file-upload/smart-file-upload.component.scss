@@ -1,0 +1,183 @@
+input[type='file'] {
+  display: none;
+}
+
+:host {
+  --file-upload-border-color: #ccc;
+  --file-upload-border-hover-color: #666;
+  --file-upload-background-color: #f9f9f9;
+  --file-preview-background-color: #fff;
+  --file-preview-border-color: #ddd;
+  --file-thumbnail-width: 50px;
+  --file-thumbnail-height: 50px;
+  --file-upload-text-color: #333;
+  --file-upload-file-name-color: rgba(51, 51, 51, 0.8);
+  --file-upload-file-size-color: rgba(51, 51, 51, 0.6);
+  --remove-btn-color: #ff0000;
+  --remove-btn-hover-color: #cc0000;
+  display: block;
+}
+
+/* Dark theme styles */
+:host(.dark-theme) {
+  --file-upload-border-color: #555;
+  --file-upload-border-hover-color: #999;
+  --file-upload-background-color: #333;
+  --file-preview-background-color: #444;
+  --file-preview-border-color: #666;
+  --file-upload-text-color: #fff;
+  --file-upload-file-name-color: rgba(236, 240, 241, 0.9);
+  --file-upload-file-size-color: rgba(236, 240, 241, 0.7);
+}
+
+/* Light theme styles (default) */
+:host(.light-theme) {
+  --file-upload-border-color: #ccc;
+  --file-upload-border-hover-color: #666;
+  --file-upload-background-color: #f9f9f9;
+  --file-preview-background-color: #fff;
+  --file-preview-border-color: #ddd;
+  --file-upload-text-color: #333;
+}
+
+.file-upload-container {
+  border: 2px dashed var(--file-upload-border-color);
+  background-color: var(--file-upload-background-color);
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.3s;
+
+  &.drag-over {
+    border-color: var(--file-upload-border-hover-color);
+  }
+
+  .title {
+    color: var(--file-upload-text-color);
+    font-weight: bold;
+  }
+
+  .description {
+    color: var(--file-upload-text-color);
+    font-size: 0.8em;
+  }
+}
+
+/* File list styling */
+/* File list styling (file-info) */
+.file-info {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: var(--file-preview-background-color);
+  border: 1px solid var(--file-preview-border-color);
+  border-radius: 4px;
+
+  .file-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    .file-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      border-bottom: 1px solid #e0e0e0;
+
+      .file-name {
+        font-weight: bold;
+        color: var(--file-upload-file-name-color);
+        flex: 1;
+        text-align: left;
+      }
+
+      .file-size {
+        color: var(--file-upload-file-size-color);
+        margin-left: 10px;
+        font-size: 0.9em;
+        text-align: center;
+        flex: 1;
+      }
+    }
+
+    .file-item:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+/* File preview styling (file-preview) */
+.file-preview {
+  margin-top: 20px;
+  background-color: var(--file-preview-background-color);
+  border: 1px solid var(--file-preview-border-color);
+  padding: 10px;
+  border-radius: 4px;
+
+  .file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    .file-thumbnail {
+      width: var(--file-thumbnail-width, 100px);
+      height: var(--file-thumbnail-height, 100px);
+      object-fit: contain;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      background-color: #f9f9f9;
+      margin-right: 10px;
+      flex-shrink: 0; /* Prevents shrinking */
+    }
+
+    .file-details {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-right: 10px;
+    }
+
+    .file-name {
+      font-weight: bold;
+      font-size: 0.9em;
+      color: var(--file-upload-file-name-color);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0;
+    }
+
+    .file-size {
+      font-size: 0.8em;
+      color: var(--file-upload-file-size-color);
+      margin: 0;
+    }
+  }
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  margin-left: auto;
+  margin-right: 0;
+  color: var(--remove-btn-color);
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  flex: 0;
+  justify-self: flex-end;
+}
+
+.remove-btn:hover {
+  color: var(--remove-btn-hover-color);
+}
+
+.remove-btn:focus {
+  outline: none;
+}
