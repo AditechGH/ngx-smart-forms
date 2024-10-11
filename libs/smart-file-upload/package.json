@@ -1,0 +1,24 @@
+{
+  "name": "@ngx-smart-forms/smart-file-upload",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Adinan Alhassan <aditech5170@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AditechGH/ngx-smart-forms.git"
+  },
+  "keywords": [
+    "angular",
+    "library",
+    "file upload",
+    "forms",
+    "validation"
+  ],
+  "peerDependencies": {
+    "@angular/common": ">=17.0.0",
+    "@angular/core": ">=17.0.0",
+    "@angular/forms": ">=17.0.0"
+  },
+  "sideEffects": false
+}

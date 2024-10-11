@@ -1,0 +1,74 @@
+<div
+  (click)="triggerFileInput()"
+  (keydown.enter)="triggerFileInput()"
+  (keydown.space)="triggerFileInput()"
+  class="file-upload-container"
+  [class.drag-over]="isDragOver"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+  (drop)="onDrop($event)"
+  tabindex="0"
+  [attr.aria-invalid]="errors ? 'true' : null"
+>
+  <input
+    aria-label="file upload"
+    type="file"
+    #fileInput
+    [attr.accept]="accept"
+    [attr.multiple]="multiple ? '' : null"
+    [attr.aria-invalid]="errors ? 'true' : null"
+    (change)="onFileSelected($event)"
+  />
+  <p class="title">Drag & Drop files here, or click to upload</p>
+  <span class="description"
+    >{{ accept | mimeType }} . Max size: {{ maxFileSize | fileSize }}
+
+    <span *ngIf="maxWidth && maxHeight">
+      . Max dimensions: {{ maxWidth }}x{{ maxHeight }}px
+    </span>
+    <span *ngIf="maxWidth && !maxHeight"> . Max width: {{ maxWidth }}px </span>
+    <span *ngIf="!maxWidth && maxHeight">
+      . Max height: {{ maxHeight }}px
+    </span>
+  </span>
+
+  <div class="file-info" *ngIf="files.length > 0 && !showPreview">
+    <ul class="file-list">
+      <li *ngFor="let file of files; let i = index" class="file-item">
+        <span class="file-name">
+          {{ file.name | slice : 0 : 50
+          }}{{ file.name.length > 50 ? '...' : '' }}
+        </span>
+        <span class="file-size">{{ file.size | fileSize }}</span>
+        <button
+          type="button"
+          class="remove-btn"
+          (click)="removeFile(i, $event)"
+        >
+          &times;
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="file-preview" *ngIf="files.length > 0 && showPreview">
+    <div *ngFor="let file of files; let i = index" class="file-item">
+      <img
+        *ngIf="isImage(file) && (!lazyLoadPreviews || imageVisible(file))"
+        [src]="file | filePreview"
+        alt="Image preview"
+        class="file-thumbnail"
+      />
+      <div class="file-details">
+        <p class="file-name">
+          {{ file.name | slice : 0 : 50
+          }}{{ file.name.length > 50 ? '...' : '' }}
+        </p>
+        <p class="file-size">{{ file.size | fileSize }}</p>
+      </div>
+      <button type="button" class="remove-btn" (click)="removeFile(i, $event)">
+        &times;
+      </button>
+    </div>
+  </div>
+</div>
