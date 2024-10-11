@@ -1,7 +1,7 @@
 {
   "name": "@ngx-smart-forms/smart-file-upload",
   "version": "1.0.0",
-  "description": "",
+  "description": "A customizable Angular component for handling file uploads with advanced validation options. Features include multiple file uploads, file type and size validation, image dimension checks, drag-and-drop support, lazy-loaded image previews, and theming support. Seamlessly integrates with Angular forms, providing a flexible and user-friendly file upload experience.",
   "author": "Adinan Alhassan <aditech5170@gmail.com>",
   "license": "MIT",
   "repository": {
@@ -10,15 +10,25 @@
   },
   "keywords": [
     "angular",
-    "library",
+    "typescript",
     "file upload",
-    "forms",
-    "validation"
+    "file input",
+    "file validation",
+    "image upload",
+    "drag and drop",
+    "angular forms",
+    "file preview",
+    "multiple file upload",
+    "lazy loading",
+    "custom validation",
+    "theming",
+    "smart file upload"
   ],
   "peerDependencies": {
     "@angular/common": ">=17.0.0",
     "@angular/core": ">=17.0.0",
-    "@angular/forms": ">=17.0.0"
+    "@angular/forms": ">=17.0.0",
+    "rxjs": "^7.0.0"
   },
   "sideEffects": false
 }
