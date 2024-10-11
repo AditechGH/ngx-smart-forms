@@ -1,0 +1,159 @@
+<div class="container">
+  <h1>Smart File Upload Demo</h1>
+
+  <!-- Basic file upload with default settings -->
+  <h3>1. Basic Single File Upload</h3>
+  <form [formGroup]="basicForm">
+    <smart-file-upload formControlName="singleFile"></smart-file-upload>
+
+    <!-- Display errors -->
+    <div *ngIf="basicForm.get('singleFile')?.errors as errors">
+      <div *ngIf="errors['maxSize']">
+        File size should not exceed
+        {{ errors['maxSize'].maxSize / 1024 / 1024 }} MB.
+      </div>
+      <div *ngIf="errors['invalidType']">
+        Invalid file type. Allowed: {{ errors['invalidType'].allowedTypes }}.
+      </div>
+    </div>
+  </form>
+
+  <!-- Multiple files upload -->
+  <h3>2. Multiple File Uploads</h3>
+  <form [formGroup]="multipleFilesForm">
+    <smart-file-upload
+      formControlName="multipleFiles"
+      [multiple]="true"
+    ></smart-file-upload>
+
+    <!-- Display errors -->
+    <div *ngIf="multipleFilesForm.get('multipleFiles')?.errors as errors">
+      <div *ngIf="errors['maxFiles']">
+        You can upload up to {{ errors['maxFiles'].maxFiles }} files.
+      </div>
+      <div *ngIf="errors['maxSize']">
+        File size should not exceed
+        {{ errors['maxSize'].maxSize / 1024 / 1024 }} MB.
+      </div>
+      <div *ngIf="errors['invalidType']">
+        Invalid file type. Allowed: {{ errors['invalidType'].allowedTypes }}.
+      </div>
+    </div>
+  </form>
+
+  <!-- File type and size validation -->
+  <h3>3. File Type and Size Validation</h3>
+  <form [formGroup]="validationForm">
+    <smart-file-upload
+      formControlName="validatedFile"
+      accept="image/jpeg, application/pdf"
+      [maxFileSize]="1 * 1024 * 1024"
+    ></smart-file-upload>
+
+    <!-- Display errors -->
+    <div *ngIf="validationForm.get('validatedFile')?.errors as errors">
+      <div *ngIf="errors['invalidType']">
+        Invalid file type. Allowed: {{ errors['invalidType'].allowedTypes }}.
+      </div>
+      <div *ngIf="errors['maxSize']">
+        File size should not exceed
+        {{ errors['maxSize'].maxSize / 1024 / 1024 }} MB.
+      </div>
+    </div>
+  </form>
+
+  <!-- Image dimension validation -->
+  <h3>4. Image Dimension Validation</h3>
+  <form [formGroup]="imageForm">
+    <smart-file-upload
+      formControlName="imageFile"
+      accept="image/*"
+      [maxWidth]="1920"
+      [maxHeight]="1080"
+    ></smart-file-upload>
+
+    <!-- Display errors -->
+    <div *ngIf="imageForm.get('imageFile')?.errors as errors">
+      <div *ngIf="errors['maxWidth']">
+        Image width should not exceed {{ errors['maxWidth'].maxWidth }}px.
+      </div>
+      <div *ngIf="errors['maxHeight']">
+        Image height should not exceed {{ errors['maxHeight'].maxHeight }}px.
+      </div>
+    </div>
+  </form>
+
+  <!-- Debounced validation -->
+  <h3>5. Debounced File Upload</h3>
+  <form [formGroup]="debouncedForm">
+    <smart-file-upload
+      formControlName="debouncedFile"
+      [debounceTime]="500"
+      [multiple]="true"
+      accept="image/*"
+    ></smart-file-upload>
+
+    <!-- Display errors -->
+    <div *ngIf="debouncedForm.get('debouncedFile')?.errors as errors">
+      <div *ngIf="errors['invalidType']">
+        Invalid file type. Allowed: {{ errors['invalidType'].allowedTypes }}.
+      </div>
+    </div>
+  </form>
+
+  <!-- Lazy loading previews -->
+  <h3>6. Lazy Loading Image Previews</h3>
+  <form [formGroup]="lazyLoadForm">
+    <smart-file-upload
+      formControlName="lazyLoadedFile"
+      [lazyLoadPreviews]="true"
+      accept="image/*"
+      [showPreview]="true"
+      [multiple]="true"
+    ></smart-file-upload>
+  </form>
+
+  <!-- Theming support -->
+  <h3>7. Themed File Upload (Dark Theme)</h3>
+  <form id="themeForm" [formGroup]="themeForm">
+    <smart-file-upload
+      formControlName="themedFile"
+      theme="dark"
+    ></smart-file-upload>
+  </form>
+
+  <!-- Custom file handling with drag and drop -->
+  <h3>8. File Handling with Drag and Drop Events</h3>
+  <form [formGroup]="dragDropForm">
+    <smart-file-upload
+      formControlName="dragDropFile"
+      (fileSelected)="handleFileSelected($event)"
+      (dragOver)="handleDragOver($event)"
+      (drop)="handleFileDrop($event)"
+    ></smart-file-upload>
+  </form>
+
+  <!-- Custom validation for images with previews -->
+  <h3>9. Image Upload with Previews, Custom Validation and Custom Theme</h3>
+  <form id="previewForm" [formGroup]="previewForm">
+    <smart-file-upload
+      formControlName="imagePreviewFile"
+      [showPreview]="true"
+      accept="image/*"
+      [maxWidth]="1000"
+      [maxHeight]="1000"
+    ></smart-file-upload>
+
+    <!-- Display custom validation errors -->
+    <div *ngIf="previewForm.get('imagePreviewFile')?.errors as errors">
+      <div *ngIf="errors['maxWidth']">
+        Image width exceeds the maximum limit of
+        {{ errors['maxWidth'].maxWidth }}px.
+      </div>
+      <div *ngIf="errors['maxHeight']">
+        Image height exceeds the maximum limit of
+        {{ errors['maxHeight'].maxHeight }}px.
+      </div>
+    </div>
+  </form>
+</div>
