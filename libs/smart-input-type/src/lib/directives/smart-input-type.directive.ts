@@ -219,7 +219,8 @@ export class SmartInputType implements OnInit, OnChanges {
         break;
       }
       case 'tel': {
-        const telPattern = /^\+?(\d.*){3,}$/;
+        const telPattern =
+          /^\+?(\d{1,3})?[-.\s]?(\(?\d{1,4}\)?)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
         if (!telPattern.test(value) && value !== '') {
           errors['strictTel'] = true;
         }
