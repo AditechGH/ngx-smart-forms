@@ -18,7 +18,10 @@
     "lint:smart-error-display": "npx nx lint smart-error-display",
     "build:smart-input-type": "npx nx build smart-input-type",
     "test:smart-input-type": "npx nx test smart-input-type",
-    "lint:smart-input-type": "npx nx lint smart-input-type"
+    "lint:smart-input-type": "npx nx lint smart-input-type",
+    "build:smart-file-upload": "npx nx build smart-file-upload",
+    "test:smart-file-upload": "npx nx test smart-file-upload",
+    "lint:smart-file-upload": "npx nx lint smart-file-upload"
   },
   "private": true,
   "dependencies": {
