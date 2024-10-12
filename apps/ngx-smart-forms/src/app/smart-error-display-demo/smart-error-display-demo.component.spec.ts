@@ -5,7 +5,7 @@ import {
   tick,
 } from '@angular/core/testing';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { SmartErrorDisplayComponent } from '@ngx-smart-forms/smart-error-display';
+import { SmartErrorDisplay } from '@ngx-smart-forms/smart-error-display';
 import { By } from '@angular/platform-browser';
 
 import { SmartErrorDisplayDemoComponent } from './smart-error-display-demo.component';
@@ -19,7 +19,7 @@ describe('SmartErrorDisplayDemoComponent', () => {
       imports: [
         ReactiveFormsModule,
         FormsModule,
-        SmartErrorDisplayComponent,
+        SmartErrorDisplay,
         SmartErrorDisplayDemoComponent,
       ],
     }).compileComponents();

@@ -8,17 +8,12 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { SmartErrorDisplayComponent } from '@ngx-smart-forms/smart-error-display';
+import { SmartErrorDisplay } from '@ngx-smart-forms/smart-error-display';
 
 @Component({
   selector: 'app-smart-error-display-demo',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SmartErrorDisplayComponent,
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, SmartErrorDisplay],
   templateUrl: './smart-error-display-demo.component.html',
   styleUrl: './smart-error-display-demo.component.css',
 })

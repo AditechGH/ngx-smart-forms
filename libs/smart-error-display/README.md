@@ -61,16 +61,16 @@ yarn add @ngx-smart-forms/smart-error-display
 
 ## Getting Started
 
-To use `@ngx-smart-forms/smart-error-display`, import the `SmartErrorDisplayComponent` into your Angular application
+To use `@ngx-smart-forms/smart-error-display`, import the `SmartErrorDisplay` component into your Angular application
 
 ```typescript
 import { Component } from '@angular/core';
-import { SmartErrorDisplayComponent } from '@ngx-smart-forms/smart-error-display';
+import { SmartErrorDisplay } from '@ngx-smart-forms/smart-error-display';
 import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
 
 @Component({
   standalone: true, // Indicate that this is a standalone component
-  imports: [ReactiveFormsModule, SmartErrorDisplayComponent], // Import necessary modules
+  imports: [ReactiveFormsModule, SmartErrorDisplay], // Import necessary modules
   ...
 })
 export class MyFormComponent { }
@@ -99,7 +99,7 @@ The basic implementation of the `@ngx-smart-forms/smart-error-display` with reac
 
 ### Usage with Template-Driven Forms
 
-The `SmartErrorDisplayComponent` also supports template-driven forms by automatically detecting the form control when used with `ngModel`. However, for the component to display the correct validation messages, it is essential to bind the appropriate control using template reference variables.
+The `SmartErrorDisplay` component also supports template-driven forms by automatically detecting the form control when used with `ngModel`. However, for the component to display the correct validation messages, it is essential to bind the appropriate control using template reference variables.
 
 ```html
 <form #form="ngForm">
@@ -113,7 +113,7 @@ The `SmartErrorDisplayComponent` also supports template-driven forms by automati
     minlength="3"
     #username="ngModel"
   />
-  <!-- Binding the control to the SmartErrorDisplayComponent -->
+  <!-- Binding the control to the SmartErrorDisplay -->
   <smart-error-display
     [control]="username.control"
     [customMessages]="{ required: 'Username is required.' }"
@@ -122,7 +122,7 @@ The `SmartErrorDisplayComponent` also supports template-driven forms by automati
   <label for="email">Email</label>
   <!-- Assigning #email as a reference variable -->
   <input id="email" name="email" ngModel required email #email="ngModel" />
-  <!-- Binding the control to the SmartErrorDisplayComponent -->
+  <!-- Binding the control to the SmartErrorDisplay -->
   <smart-error-display
     [control]="email.control"
     [customMessages]="{ email: 'Invalid email format.' }"
@@ -313,8 +313,8 @@ If you encounter an issue, you can [create a ticket](https://github.com/AditechG
 
 ## Contributing
 
-We welcome contributions! Please see the [CONTRIBUTING.md](../../CONTRIBUTING.md) file for more information on how to get involved.
+We welcome contributions! Please see the [CONTRIBUTING.md](https://github.com/AditechGH/ngx-smart-forms/blob/main/CONTRIBUTING.md) file for more information on how to get involved.
 
 ## License
 
-This library is licensed under the MIT License - see the [LICENSE](../../LICENSE) file for details.
+This library is licensed under the MIT License - see the [LICENSE](https://github.com/AditechGH/ngx-smart-forms/blob/main/LICENSE) file for details.

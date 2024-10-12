@@ -50,9 +50,7 @@ import { getMergedStyles } from '../utils';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SmartErrorDisplayComponent
-  implements OnInit, AfterViewInit, OnDestroy
-{
+export class SmartErrorDisplay implements OnInit, AfterViewInit, OnDestroy {
   /**
    * The form control or form group whose errors will be displayed.
    * Supports both reactive form controls (AbstractControl) and template-driven form controls (NgControl).

@@ -14,22 +14,22 @@ import {
   Validators,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { SmartErrorDisplayComponent } from './smart-error-display.component';
+import { SmartErrorDisplay } from './smart-error-display.component';
 
 describe('SmartErrorDisplayComponent', () => {
-  let component: SmartErrorDisplayComponent;
-  let fixture: ComponentFixture<SmartErrorDisplayComponent>;
+  let component: SmartErrorDisplay;
+  let fixture: ComponentFixture<SmartErrorDisplay>;
   let mockElementRef: ElementRef;
 
   beforeEach(async () => {
     mockElementRef = new ElementRef(document.createElement('input'));
 
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, FormsModule, SmartErrorDisplayComponent],
+      imports: [ReactiveFormsModule, FormsModule, SmartErrorDisplay],
       providers: [{ provide: ElementRef, useValue: mockElementRef }, Renderer2],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SmartErrorDisplayComponent);
+    fixture = TestBed.createComponent(SmartErrorDisplay);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
