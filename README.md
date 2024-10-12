@@ -6,8 +6,9 @@ ngx-smart-forms is a collection of Angular libraries designed to enhance form ha
 
 - [About the Project](#about-the-project)
 - [Libraries](#libraries)
-  - [@ngx-smart-forms/smart-input-type](#ngx-smart-formssmart-error-display)
+  - [@ngx-smart-forms/smart-input-type](#ngx-smart-formssmart-input-type)
   - [@ngx-smart-forms/smart-error-display](#ngx-smart-formssmart-error-display)
+  - [@ngx-smart-forms/smart-file-upload](#ngx-smart-formssmart-file-upload)
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -22,7 +23,7 @@ ngx-smart-forms is a collection of Angular libraries designed to enhance form ha
 
 ## About the Project
 
-The ngx-smart-forms project is a unified workspace containing multiple Angular libraries that provide tools for creating efficient, user-friendly forms. These libraries cover everything from error display components, customizable inputs, to dynamic form builders.
+The ngx-smart-forms project is a unified workspace containing multiple Angular libraries that provide tools for creating efficient, user-friendly forms. These libraries cover everything from error display components, customizable inputs, to dynamic form builders and advanced file upload capabilities.
 
 The main goal of this project is to deliver reusable and easily customizable form components that work well in real-world production environments.
 
@@ -52,6 +53,19 @@ The `@ngx-smart-forms/smart-error-display` is a robust Angular component for dis
 
 For more details, see the full [README](./libs/smart-error-display/README.md).
 
+### @ngx-smart-forms/smart-file-upload
+
+The `@ngx-smart-forms/smart-file-upload` is an Angular component that simplifies file uploading in forms. It provides a customizable file upload interface with support for file previews, validation, drag-and-drop functionality, and customizable themes.
+
+- Key Features:
+  - Supports drag-and-drop file uploads.
+  - Validates file types, sizes, and image dimensions.
+  - Offers customizable previews and lazy loading for images.
+  - Fully customizable styles and themes (light, dark, custom).
+  - Works seamlessly with Angular reactive and template-driven forms.
+
+For more details, see the full [README](./libs/smart-file-upload/README.md).
+
 ## Getting Started
 
 This section explains how to get started with the ngx-smart-forms libraries in your Angular projects.
@@ -79,11 +93,11 @@ After installing the libraries, you can import and use them in your Angular comp
 ```typescript
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SmartErrorDisplayComponent } from '@ngx-smart-forms/smart-error-display';
+import { SmartErrorDisplay } from '@ngx-smart-forms/smart-error-display';
 
 @Component({
   standalone: true,
-  imports: [SmartErrorDisplayComponent],
+  imports: [SmartErrorDisplay],
   templateUrl: './my-form.component.html',
 })
 export class MyFormComponent {
@@ -96,7 +110,7 @@ export class MyFormComponent {
     });
   }
 }
-````
+```
 
 ```html
 <form [formGroup]="form">
