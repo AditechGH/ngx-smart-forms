@@ -1,6 +1,6 @@
 {
   "name": "@ngx-smart-forms/smart-error-display",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "\"@ngx-smart-forms/smart-error-display\" is an Angular library that provides advanced validation error display for form controls and groups. It seamlessly supports both reactive and template-driven forms, offering features such as theming, custom error messages, localization (i18n), error display control, and performance optimizations. Ideal for production use in Angular applications with comprehensive form validation requirements.",
   "author": "Adinan Alhassan <aditech5170@gmail.com>",
   "license": "MIT",
@@ -29,10 +29,10 @@
     "angular validation"
   ],
   "peerDependencies": {
-    "@angular/common": ">=17.0.0",
-    "@angular/core": ">=17.0.0",
-    "@angular/forms": ">=17.0.0",
-    "rxjs": "^7.0.0"
+    "@angular/common": ">=12.0.0",
+    "@angular/core": ">=12.0.0",
+    "@angular/forms": ">=12.0.0",
+    "rxjs": "^6.6.0 || ^7.0.0"
   },
   "sideEffects": false
 }

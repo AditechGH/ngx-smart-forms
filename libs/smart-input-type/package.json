@@ -1,6 +1,6 @@
 {
   "name": "@ngx-smart-forms/smart-input-type",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "\"@ngx-smart-forms/smart-input-type\" is an Angular directive that enhances native input elements by providing advanced validation and formatting capabilities. It supports predefined types like alphanumeric, numeric, email, and custom regex patterns, while offering additional features such as case transformation, language-specific filtering, and debounce time for input validation. The directive integrates seamlessly with Angular reactive forms for a comprehensive and flexible input validation solution.",
   "author": "Adinan Alhassan <aditech5170@gmail.com>",
   "license": "MIT",
@@ -27,9 +27,9 @@
     "ngx-smart-forms"
   ],
   "peerDependencies": {
-    "@angular/core": ">=17.0.0",
-    "@angular/forms": ">=17.0.0",
-    "rxjs": "^7.0.0"
+    "@angular/core": ">=12.0.0",
+    "@angular/forms": ">=12.0.0",
+    "rxjs": "^6.6.0 || ^7.0.0"
   },
   "sideEffects": false
 }
