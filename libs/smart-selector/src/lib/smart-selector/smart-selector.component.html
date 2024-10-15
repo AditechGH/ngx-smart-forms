@@ -1,0 +1,47 @@
+<cdk-virtual-scroll-viewport
+  itemSize="50"
+  class="smart-selector-viewport"
+  [ngStyle]="{
+    height: '300px',
+    width: direction === 'horizontal' ? '100%' : 'auto'
+  }"
+>
+  <div
+    class="smart-selector"
+    [ngClass]="[theme, layout]"
+    [style.--selector-direction]="direction === 'vertical' ? 'column' : 'row'"
+    role="listbox"
+    [attr.aria-multiselectable]="multiSelect"
+    title="Smart Selector"
+    #selectorContainer
+  >
+    <div
+      *cdkVirtualFor="let option of options; let i = index"
+      class="smart-selector__pane"
+      [class.active]="isSelected(option)"
+      (click)="selectOption(option)"
+      (keydown.enter)="selectOption(option)"
+      (keydown.space)="selectOption(option)"
+      (keydown.arrowDown)="navigateOptions(i + 1)"
+      (keydown.arrowUp)="navigateOptions(i - 1)"
+      [attr.aria-selected]="isSelected(option)"
+      tabindex="0"
+      role="option"
+      [attr.id]="'option-' + i"
+    >
+      <ng-container *ngIf="!template; else customTemplate">
+        <img
+          *ngIf="optionImage(option)"
+          [src]="optionImage(option)"
+          alt="{{ optionLabel(option) }} image"
+        />
+        <p>{{ optionLabel(option) }}</p>
+      </ng-container>
+      <ng-template #customTemplate>
+        <ng-container
+          *ngTemplateOutlet="template ?? null; context: { $implicit: option }"
+        ></ng-container>
+      </ng-template>
+    </div>
+  </div>
+</cdk-virtual-scroll-viewport>
