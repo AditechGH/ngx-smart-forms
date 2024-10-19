@@ -3,7 +3,6 @@
   [ngStyle]="{
     'max-height': maxHeight,
     overflow: 'auto',
-    'scroll-behavior': 'smooth'
   }"
   title="Smart Selector"
 >
@@ -36,7 +35,7 @@
       [class.disabled]="disabled"
       (click)="selectOption(option)"
       (keydown.enter)="selectOption(option)"
-      (keydown.space)="selectOption(option)"
+      (keydown.space)="onOptionKeydown(option, $event)"
       (keydown.arrowDown)="navigateOptions(i + 1)"
       (keydown.arrowRight)="navigateOptions(i + 1)"
       (keydown.arrowUp)="navigateOptions(i - 1)"
