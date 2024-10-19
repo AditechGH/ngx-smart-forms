@@ -1,14 +1,20 @@
 :host {
   --selector-item-spacing: 10px;
   --selector-item-padding: 20px;
-  --selector-item-border-radius: 10px;
+  --selector-item-border-radius: 3px;
   --selector-direction: row;
-  --selector-background-color: #fff;
+
+  --selector-background-color: #f5f9fd;
   --selector-text-color: #333;
-  --selector-active-background-color: #007bff;
-  --selector-active-text-color: #fff;
+
+  --selector-active-background-color: #a0c6ec;
+  --selector-active-text-color: #333;
+
   --selector-hover-background-color: #f1f1f1;
-  --grid-columns: repeat(auto-fill, minmax(150px, 1fr)); /* For grid layout */
+  --selector-hover-text-color: #333;
+
+  --selector-transition: all 0.2s ease-in-out;
+  --grid-columns: repeat(auto-fit, minmax(150px, max-content));
   display: block;
 }
 
@@ -18,9 +24,14 @@
   outline: none;
 
   &.grid {
-    display: grid; /* Use grid layout */
-    grid-template-columns: var(--grid-columns); /* Define columns for grid */
-    gap: var(--selector-item-spacing); /* Grid gap between items */
+    display: grid;
+    grid-template-columns: var(--grid-columns);
+    gap: var(--selector-item-spacing);
+
+    .smart-selector__pane {
+      justify-content: center;
+      text-align: center;
+    }
   }
 
   &.list {
@@ -33,13 +44,15 @@
     padding: var(--selector-item-padding);
     margin: var(--selector-item-spacing);
     border-radius: var(--selector-item-border-radius);
+    color: var(--selector-text-color);
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
+    transition: var(--selector-transition);
     display: flex;
     align-items: center;
 
     &:hover {
       background-color: var(--selector-hover-background-color);
+      color: var(--selector-hover-text-color);
     }
 
     &.active {
@@ -62,16 +75,23 @@
   }
 }
 
+@media (max-width: 768px) {
+  .smart-selector__pane {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 @media (max-width: 600px) {
   .smart-selector__pane {
-    padding: 10px;
+    padding: 16px;
     margin: 5px;
   }
+}
 
-  .smart-selector.grid {
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(100px, 1fr)
-    ); /* Adjust grid layout for mobile */
+@media (max-width: 480px) {
+  .smart-selector__pane {
+    padding: 16px;
+    margin: 4px;
   }
 }
