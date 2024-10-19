@@ -1,0 +1,33 @@
+{
+  "name": "@ngx-smart-forms/smart-selector",
+  "version": "1.0.0",
+  "description": "A dynamic and flexible Angular component for selecting options from lists or grids. Features include single and multi-select modes, keyboard navigation, customizable templates, accessibility support (ARIA), and integration with Angular forms. Ideal for building interactive selection interfaces with theming support.",
+  "author": "Adinan Alhassan <aditech5170@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AditechGH/ngx-smart-forms.git"
+  },
+  "keywords": [
+    "angular",
+    "typescript",
+    "smart selector",
+    "dropdown",
+    "option selection",
+    "multi-select",
+    "keyboard navigation",
+    "aria support",
+    "angular forms",
+    "custom templates",
+    "grid selector",
+    "list selector",
+    "theming"
+  ],
+  "peerDependencies": {
+    "@angular/common": ">=12.0.0",
+    "@angular/core": ">=12.0.0",
+    "@angular/forms": ">=12.0.0",
+    "rxjs": "^6.6.0 || ^7.0.0"
+  },
+  "sideEffects": false
+}

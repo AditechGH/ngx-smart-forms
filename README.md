@@ -1,6 +1,6 @@
 # ngx-smart-forms Library Collection
 
-ngx-smart-forms is a collection of Angular libraries designed to enhance form handling and validation in Angular applications. Each library in this workspace offers specific functionality aimed at simplifying form creation, validation, and error display, while providing advanced customization and performance optimizations.
+`ngx-smart-forms` is a collection of Angular libraries designed to enhance form handling and validation in Angular applications. Each library in this workspace offers specific functionality aimed at simplifying form creation, validation, and error display, while providing advanced customization and performance optimizations.
 
 ## Table of Contents
 
@@ -9,6 +9,7 @@ ngx-smart-forms is a collection of Angular libraries designed to enhance form ha
   - [@ngx-smart-forms/smart-input-type](#ngx-smart-formssmart-input-type)
   - [@ngx-smart-forms/smart-error-display](#ngx-smart-formssmart-error-display)
   - [@ngx-smart-forms/smart-file-upload](#ngx-smart-formssmart-file-upload)
+  - [@ngx-smart-forms/smart-selector](#ngx-smart-formssmart-selector)
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -23,7 +24,7 @@ ngx-smart-forms is a collection of Angular libraries designed to enhance form ha
 
 ## About the Project
 
-The ngx-smart-forms project is a unified workspace containing multiple Angular libraries that provide tools for creating efficient, user-friendly forms. These libraries cover everything from error display components, customizable inputs, to dynamic form builders and advanced file upload capabilities.
+The `ngx-smart-forms` project is a unified workspace containing multiple Angular libraries that provide tools for creating efficient, user-friendly forms. These libraries cover everything from error display components, customizable inputs, to dynamic form builders and advanced file upload capabilities.
 
 The main goal of this project is to deliver reusable and easily customizable form components that work well in real-world production environments.
 
@@ -33,7 +34,7 @@ The main goal of this project is to deliver reusable and easily customizable for
 
 The `@ngx-smart-forms/smart-input-type` is a powerful Angular directive that enhances native HTML input elements with advanced validation and formatting capabilities.
 
-- Key Features:
+- **Key Features:**
   - Enforces various input types and custom regex patterns.
   - Integrates with native HTML input types and reactive forms.
   - Supports case transformation and language-specific character sets.
@@ -45,7 +46,7 @@ For more details, see the full [README](./libs/smart-input-type/README.md).
 
 The `@ngx-smart-forms/smart-error-display` is a robust Angular component for displaying form validation errors. It supports both reactive and template-driven forms, offering localization, theming, and custom error handling.
 
-- Key Features:
+- **Key Features:**
   - Works with reactive and template-driven forms.
   - Customizable error messages and themes.
   - Supports translation services for i18n.
@@ -57,7 +58,7 @@ For more details, see the full [README](./libs/smart-error-display/README.md).
 
 The `@ngx-smart-forms/smart-file-upload` is an Angular component that simplifies file uploading in forms. It provides a customizable file upload interface with support for file previews, validation, drag-and-drop functionality, and customizable themes.
 
-- Key Features:
+- **Key Features:**
   - Supports drag-and-drop file uploads.
   - Validates file types, sizes, and image dimensions.
   - Offers customizable previews and lazy loading for images.
@@ -66,15 +67,29 @@ The `@ngx-smart-forms/smart-file-upload` is an Angular component that simplifies
 
 For more details, see the full [README](./libs/smart-file-upload/README.md).
 
+### @ngx-smart-forms/smart-selector
+
+The `@ngx-smart-forms/smart-selector` is a dynamic Angular component for selecting options from lists or grids. It offers multiple selection modes, keyboard navigation, accessibility support, and customizable templates.
+
+- **Key Features:**
+  - Supports both single and multi-select modes.
+  - Keyboard navigation with arrow keys and Enter key selection.
+  - Fully customizable option templates.
+  - Provides ARIA support for accessibility.
+  - Integrates seamlessly with Angular reactive and template-driven forms.
+  - Allows list or grid layout with flexible theming.
+
+For more details, see the full [README](./libs/smart-selector/README.md).
+
 ## Getting Started
 
-This section explains how to get started with the ngx-smart-forms libraries in your Angular projects.
+This section explains how to get started with the `ngx-smart-forms` libraries in your Angular projects.
 
 ### Installation
 
-You can install any of the libraries from the ngx-smart-forms workspace using npm or yarn.
+You can install any of the libraries from the `ngx-smart-forms` workspace using npm or yarn.
 
-For example, to install the smart-error-display library:
+For example, to install the `smart-selector` library:
 
 ```bash
 npm install @ngx-smart-forms/smart-error-display
@@ -120,6 +135,7 @@ export class MyFormComponent {
   <input formControlName="email" placeholder="Email" />
   <smart-error-display [control]="form.get('email')"></smart-error-display>
 </form>
+</form>
 ```
 
 For detailed usage instructions for each library, see their individual `README.md` files inside the respective `libs/` directories.
@@ -161,7 +177,7 @@ npm run test
 To run tests for a specific library (e.g., smart-error-display):
 
 ```bash
-npm run smart-error-display
+npm run test:smart-error-display
 ```
 
 ### Running the Demo App
@@ -176,7 +192,7 @@ npm run start
 
 We welcome contributions from the community! If you're interested in contributing to the project, please check out the [CONTRIBUTING.md](./CONTRIBUTING.md) file in the root of the repository.
 
-### How to Contribute:
+**How to Contribute:**
 
 1. Fork the repository.
 2. Create a feature branch.

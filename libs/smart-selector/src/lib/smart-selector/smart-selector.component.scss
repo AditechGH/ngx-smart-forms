@@ -1,0 +1,109 @@
+:host {
+  --selector-item-spacing: 10px;
+  --selector-item-padding: 20px;
+  --selector-item-border-radius: 3px;
+  --selector-direction: row;
+
+  --selector-disabled-background-color: #e0e0e0;
+  --selector-disabled-text-color: #9e9e9e;
+  --selector-disabled-cursor: not-allowed;
+
+  --selector-background-color: #f5f9fd;
+  --selector-text-color: #333;
+
+  --selector-active-background-color: #a0c6ec;
+  --selector-active-text-color: #333;
+
+  --selector-hover-background-color: #f1f1f1;
+  --selector-hover-text-color: #333;
+
+  --selector-transition: all 0.2s ease-in-out;
+  --grid-columns: repeat(auto-fit, minmax(150px, max-content));
+  display: block;
+}
+
+.smart-selector {
+  display: flex;
+  flex-direction: var(--selector-direction);
+  outline: none;
+
+  &.grid {
+    display: grid;
+    grid-template-columns: var(--grid-columns);
+    gap: var(--selector-item-spacing);
+
+    .smart-selector__pane {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+
+  &.list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__pane {
+    background-color: var(--selector-background-color);
+    padding: var(--selector-item-padding);
+    margin: var(--selector-item-spacing);
+    border-radius: var(--selector-item-border-radius);
+    color: var(--selector-text-color);
+    cursor: pointer;
+    transition: var(--selector-transition);
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background-color: var(--selector-hover-background-color);
+      color: var(--selector-hover-text-color);
+    }
+
+    &.active {
+      background-color: var(--selector-active-background-color);
+      color: var(--selector-active-text-color);
+    }
+
+    &.disabled {
+      background-color: var(--selector-disabled-background-color);
+      color: var(--selector-disabled-text-color);
+      cursor: var(--selector-disabled-cursor);
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    img {
+      margin-right: 10px;
+      width: 35px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .smart-selector__pane {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .smart-selector__pane {
+    padding: 16px;
+    margin: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .smart-selector__pane {
+    padding: 16px;
+    margin: 4px;
+  }
+}

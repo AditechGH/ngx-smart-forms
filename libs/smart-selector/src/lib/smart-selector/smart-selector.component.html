@@ -1,0 +1,71 @@
+<div
+  class="smart-selector-viewport"
+  [ngStyle]="{
+    'max-height': maxHeight,
+    overflow: 'auto',
+  }"
+  title="Smart Selector"
+>
+  <!-- Placeholder Logic -->
+  <div
+    *ngIf="!value.length && options.length && placeholder"
+    class="placeholder"
+  >
+    {{ placeholder }}
+  </div>
+
+  <!-- No Options Text Logic -->
+  <div *ngIf="!options.length" class="no-options">
+    {{ noOptionsText }}
+  </div>
+  <div
+    class="smart-selector"
+    [ngClass]="[layout]"
+    role="listbox"
+    [attr.aria-multiselectable]="multiSelect"
+    [attr.aria-activedescendant]="ariaActiveDescendant"
+    title="Smart Selector"
+    #selectorContainer
+  >
+    <!-- Options Rendering -->
+    <div
+      *ngFor="let option of options; let i = index; trackBy: trackByFn"
+      class="smart-selector__pane"
+      [class.active]="isSelected(option)"
+      [class.disabled]="disabled"
+      (click)="selectOption(option)"
+      (keydown.enter)="selectOption(option)"
+      (keydown.space)="onOptionKeydown(option, $event)"
+      (keydown.arrowDown)="navigateOptions(i + 1)"
+      (keydown.arrowRight)="navigateOptions(i + 1)"
+      (keydown.arrowUp)="navigateOptions(i - 1)"
+      (keydown.arrowLeft)="navigateOptions(i - 1)"
+      [attr.aria-selected]="isSelected(option)"
+      tabindex="0"
+      role="option"
+      [attr.id]="'option-' + i"
+      [attr.aria-label]="getAriaLabel(option)"
+    >
+      <ng-container *ngIf="!template; else customTemplate">
+        <img
+          *ngIf="optionImage(option)"
+          [src]="optionImage(option)"
+          alt="{{ optionLabel(option) }} image"
+        />
+        <p>{{ optionLabel(option) }}</p>
+      </ng-container>
+      <ng-template #customTemplate>
+        <ng-container
+          *ngTemplateOutlet="
+            template ?? null;
+            context: {
+              $implicit: option,
+              index: i,
+              selected: isSelected(option)
+            }
+          "
+        ></ng-container>
+      </ng-template>
+    </div>
+  </div>
+</div>

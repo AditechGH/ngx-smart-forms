@@ -25,7 +25,8 @@
       ],
       "@ngx-smart-forms/smart-input-type": [
         "libs/smart-input-type/src/index.ts"
-      ]
+      ],
+      "@ngx-smart-forms/smart-selector": ["libs/smart-selector/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
