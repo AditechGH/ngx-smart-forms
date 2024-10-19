@@ -1,0 +1,203 @@
+<div class="container">
+  <h1>Smart Selector Demo</h1>
+
+  <!-- Single Selection (Simple Example) -->
+  <h3>1. Single Selection</h3>
+  <form [formGroup]="form">
+    <smart-selector
+      formControlName="singleSelection"
+      [options]="options"
+      (optionChanged)="onOptionChange($event)"
+    ></smart-selector>
+  </form>
+
+  <!-- Multi-Selection Example -->
+  <h3>2. Multi-Selection</h3>
+  <form [formGroup]="form">
+    <smart-selector
+      formControlName="multiSelection"
+      [options]="options"
+      [multiSelect]="true"
+      [layout]="'list'"
+      (optionChanged)="onOptionChange($event)"
+    ></smart-selector>
+  </form>
+
+  <!-- Custom Layout Example with Grid -->
+  <h3>3. Custom Grid Layout</h3>
+  <form [formGroup]="form">
+    <smart-selector
+      formControlName="gridSelection"
+      [options]="options"
+      [layout]="'grid'"
+      (optionChanged)="onOptionChange($event)"
+    ></smart-selector>
+  </form>
+
+  <!--Selection with Images -->
+  <h3>4. Selection with Images</h3>
+  <form [formGroup]="form">
+    <smart-selector
+      formControlName="customSelection"
+      [options]="imageOptions"
+      [multiSelect]="true"
+      [optionLabel]="getLabel"
+      [optionImage]="getImage"
+      (optionChanged)="onOptionChange($event)"
+    ></smart-selector>
+  </form>
+
+  <h3>5. Max Selection with large data set</h3>
+  <form [formGroup]="form">
+    <smart-selector
+      formControlName="selectedOptions"
+      [options]="largeDataset"
+      [multiSelect]="true"
+      [maxSelection]="3"
+    ></smart-selector>
+
+    <div
+      *ngIf="form.get('selectedOptions')?.errors as errors"
+      class="error-message"
+    >
+      <div *ngIf="errors['maxSelection']">
+        Maximum selection limit exceeded! You can select only
+        {{ errors['maxSelection'].maxAllowed }} options.
+      </div>
+    </div>
+  </form>
+
+  <h3>6. Custom Tempate with Images</h3>
+  <form [formGroup]="form">
+    <smart-selector
+      id="customTemplate"
+      [options]="imageOptions"
+      [template]="customTemplate"
+      layout="grid"
+      (optionChanged)="onOptionChange($event)"
+    ></smart-selector>
+  </form>
+
+  <ng-template
+    #customTemplate
+    let-imageOptions
+    let-index="index"
+    let-selected="selected"
+  >
+    <img [src]="imageOptions.image" alt="" />
+    <p class="label" [class.selected]="selected">
+      {{ index + 1 }}. {{ imageOptions.label }}
+    </p>
+  </ng-template>
+
+  <h3>7. Custom Labels</h3>
+  <form [formGroup]="form">
+    <smart-selector
+      formControlName="selectedOptions"
+      [options]="largeDataset"
+      [multiSelect]="true"
+      [layout]="'grid'"
+      [ariaLabel]="'Option'"
+      [placeholder]="'Please select an item'"
+      [noOptionsText]="'Sorry, no items are available'"
+    ></smart-selector>
+  </form>
+
+  <h3>8. Select All</h3>
+  <form [formGroup]="form">
+    <div>
+      <label>
+        <input type="checkbox" [smartToggleSelection]="smartSelector" />
+        Select/Deselect All
+      </label>
+    </div>
+
+    <smart-selector
+      #smartSelector
+      formControlName="selectedOptions"
+      [options]="options"
+      [multiSelect]="true"
+      [layout]="'grid'"
+      (optionChanged)="onOptionChange($event)"
+    ></smart-selector>
+  </form>
+
+  <h3>9. Required Single Selection</h3>
+  <form [formGroup]="form">
+    <smart-selector
+      formControlName="requiredSelection"
+      [options]="options"
+      (optionChanged)="onOptionChange($event)"
+    ></smart-selector>
+    <div
+      *ngIf="
+        form.get('requiredSelection')?.invalid &&
+        form.get('requiredSelection')?.touched
+      "
+      class="error-message"
+    >
+      This field is required.
+    </div>
+  </form>
+
+  <h3>10. Disabled Smart Selector</h3>
+  <form [formGroup]="form">
+    <smart-selector
+      formControlName="disabledSelection"
+      [options]="options"
+    ></smart-selector>
+  </form>
+
+  <h3>11. Theming with Light/Dark Mode</h3>
+  <div>
+    <button (click)="applyTheme('light')">Light Theme</button>
+    <button (click)="applyTheme('dark')">Dark Theme</button>
+  </div>
+  <form [formGroup]="form">
+    <smart-selector
+      [id]="currentTheme"
+      formControlName="themedSelection"
+      [options]="options"
+      [layout]="'list'"
+    ></smart-selector>
+  </form>
+
+  <h3>12. Lazy Loading Options</h3>
+  <div>
+    <button (click)="reload()">reload</button>
+  </div>
+  <form [formGroup]="form">
+    <ng-container *ngIf="loading; else loaded">
+      <p>Loading options...</p>
+    </ng-container>
+    <ng-template #loaded>
+      <smart-selector
+        formControlName="lazySelection"
+        [options]="largeDataset"
+        [multiSelect]="true"
+      ></smart-selector>
+    </ng-template>
+  </form>
+
+  <h3>13. Keyboard Navigation</h3>
+  <p>Use the arrow keys to navigate and Enter or Space to select an option.</p>
+  <form [formGroup]="form">
+    <smart-selector
+      formControlName="keyboardSelection"
+      [options]="options"
+    ></smart-selector>
+  </form>
+
+  <h3>14. Dynamic Options</h3>
+  <form [formGroup]="form">
+    <input
+      type="text"
+      placeholder="Filter options"
+      (input)="filterOptions($event)"
+    />
+    <smart-selector
+      formControlName="dynamicSelection"
+      [options]="filteredOptions"
+    ></smart-selector>
+  </form>
+</div>
