@@ -14,9 +14,11 @@ import {
   EventEmitter,
   forwardRef,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
@@ -59,7 +61,7 @@ export const SMART_SELECTOR_VALIDATORS = {
   styleUrls: ['./smart-selector.component.scss'],
 })
 export class SmartSelector
-  implements ControlValueAccessor, Validator, OnInit, OnDestroy
+  implements ControlValueAccessor, Validator, OnChanges, OnInit, OnDestroy
 {
   @Input() options: SmartSelectorOption[] = [];
   @Input() optionLabel: (option: SmartSelectorOption) => string = (option) =>
@@ -90,6 +92,7 @@ export class SmartSelector
   @ViewChild('selectorContainer', { static: true }) container!: ElementRef;
 
   value: SmartSelectorOption[] = [];
+  disabled = false;
   private activeOptionIndex = 0;
   private onTouch: () => void = () => {};
   private onModelChange: (
@@ -98,6 +101,16 @@ export class SmartSelector
   private validatorChange = () => {};
   private formControl: FormControl | null = null;
   private valueChangesSubscription: Subscription = new Subscription();
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['options']) {
+      // Revalidate selected values when options change
+      this.value = this.value.filter((v) =>
+        this.options.some((option) => option.id === v.id)
+      );
+      this.validate();
+    }
+  }
 
   ngOnInit(): void {
     this.valueChangesSubscription = this.optionChanged.subscribe(() => {
@@ -124,8 +137,12 @@ export class SmartSelector
     this.optionChanged.emit(this.multiSelect ? this.value : this.value[0]);
   }
 
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
   selectOption(option: SmartSelectorOption) {
-    if (!option) {
+    if (!option || this.disabled) {
       return;
     }
 
@@ -138,19 +155,18 @@ export class SmartSelector
         this.onSelect.emit(option);
       }
     } else {
-      this.value = [option];
-      this.onSelect.emit(option);
+      if (this.isSelected(option)) {
+        this.value = [];
+      } else {
+        this.value = [option];
+        this.onSelect.emit(option);
+      }
     }
     const selectedValue = this.multiSelect ? this.value : this.value[0];
     this.onModelChange(selectedValue);
     this.onTouch();
     this.optionChanged.emit(selectedValue);
     this.validate();
-
-    const selectedElement = this.container.nativeElement.querySelector(
-      `#option-${this.activeOptionIndex}`
-    );
-    selectedElement?.focus();
   }
 
   validate(): ValidationErrors | null {
@@ -201,10 +217,10 @@ export class SmartSelector
   }
 
   isSelected(option: SmartSelectorOption): boolean {
-    if (!option) {
+    if (!option || this.disabled) {
       return false;
     }
-    return this.value.some((v) => v.id === option.id);
+    return this.value.some((v) => v?.id === option.id);
   }
 
   selectAll(): void {

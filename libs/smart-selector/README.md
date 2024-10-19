@@ -269,6 +269,9 @@ smart-selector {
   --selector-item-padding: 15px;
   --selector-item-border-radius: 4px;
   --grid-columns: repeat(auto-fit, minmax(150px, 1fr));
+  --selector-disabled-background-color: #e0e0e0;
+  --selector-disabled-text-color: #9e9e9e;
+  --selector-disabled-cursor: not-allowed;
 }
 ```
 

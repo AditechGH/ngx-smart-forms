@@ -2,7 +2,8 @@
   class="smart-selector-viewport"
   [ngStyle]="{
     'max-height': maxHeight,
-    overflow: 'auto'
+    overflow: 'auto',
+    'scroll-behavior': 'smooth'
   }"
   title="Smart Selector"
 >
@@ -32,6 +33,7 @@
       *ngFor="let option of options; let i = index; trackBy: trackByFn"
       class="smart-selector__pane"
       [class.active]="isSelected(option)"
+      [class.disabled]="disabled"
       (click)="selectOption(option)"
       (keydown.enter)="selectOption(option)"
       (keydown.space)="selectOption(option)"
